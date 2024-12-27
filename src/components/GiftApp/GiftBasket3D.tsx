@@ -175,23 +175,18 @@ const GiftBasket3D = ({ items, onItemDrop, onRemoveItem }: GiftBasket3DProps) =>
                 />
               </div>
               <div className="space-y-4">
-                <h2 className="text-2xl font-bold text-[#6D0201]">
+                <h2 className="text-xl font-bold text-[#6D0201]">
                   {selectedProduct.name}
                 </h2>
-                <p className="text-xl font-semibold">
+                <p className="text-xl  text-[#000] font-semibold">
                   {selectedProduct.price} TND
                 </p>
-                <p className="text-gray-600">
+                <p className="text-xl text-[#000]">
                   {selectedProduct.description}
                 </p>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="font-medium mb-2">Matière</h3>
-                    <p className="text-gray-600">{selectedProduct.material}</p>
-                  </div>
-                  <div>
-                    <h3 className="font-medium mb-2">Couleur</h3>
-                    <p className="text-gray-600">{selectedProduct.color}</p>
+                    <h3 className=" text-gray-600 font-medium mb-2">Couleur : {selectedProduct.color}</h3>
                   </div>
                 </div>
               </div>
