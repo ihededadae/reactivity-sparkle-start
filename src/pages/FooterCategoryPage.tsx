@@ -1,7 +1,6 @@
 import React from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import TopNavbar from "../components/TopNavbar";
-import BeltsSection from "../components/productsPages/BeltsSection";
 import Footer from "../components/Footer";
 import ProductsSection from "../components/productsPages/ProductsSection";
 import BrandNavbarSection from "@/components/productsPages/BrandNavbarSection";
@@ -43,7 +42,6 @@ const FooterCategoryPage = () => {
       <div className="hidden lg:block">
         <MainNavbar/>
       </div>
-      <BeltsSection />
       <div className="flex-grow bg-[#F9FAFB]">
         <div className="container mx-auto px-4 py-4">
           <button
