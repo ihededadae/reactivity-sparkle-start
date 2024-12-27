@@ -31,10 +31,6 @@ const GiftApp = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const getPackType = (itemCount: number) => {
-    return itemCount <= 2 ? "Pack Duo" : "Pack Trio";
-  };
-
   const handleItemDrop = (item: Product) => {
     setSelectedItems((prev) => [...prev, item]);
     playTickSound();
@@ -56,19 +52,13 @@ const GiftApp = () => {
 
   const handleConfirmPack = async () => {
     setIsLoading(true);
-    const packType = getPackType(selectedItems.length);
     
     for (const item of selectedItems) {
       await new Promise(resolve => setTimeout(resolve, 500));
-      const personalizationText = packNote ? 
-        `${packType} - ${packNote}` : 
-        `${packType}`;
-        
       addToCart({
         ...item,
         quantity: 1,
-        personalization: personalizationText,
-        packType: packType // Adding pack type to the cart item
+        personalization: item.personalization || packNote,
       });
     }
 

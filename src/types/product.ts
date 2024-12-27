@@ -28,5 +28,4 @@ export interface Product {
   itemgroup_product: string;
   size?: string;
   personalization?: string;
-  packType?: string;
 }

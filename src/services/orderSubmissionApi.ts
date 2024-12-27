@@ -17,7 +17,6 @@ interface OrderItem {
   size?: string;
   color?: string;
   personalization?: string;
-  packType?: string;
 }
 
 interface PriceDetails {
