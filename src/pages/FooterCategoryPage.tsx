@@ -43,16 +43,16 @@ const FooterCategoryPage = () => {
         <MainNavbar/>
       </div>
       <div className="flex-grow bg-[#F9FAFB]">
-        <div className="container mx-auto px-4 py-4">
-          <button
-            onClick={() => navigate('/')}
-            className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors mb-6"
-            aria-label="Go back to home"
-          >
-            <ArrowLeft size={24} />
-            <span>Retour à l'accueil</span>
-          </button>
-          <div className="mb-6">
+        <div className="container mx-auto px-4 py-8">
+          <div className="mb-8">
+            <button
+              onClick={() => navigate('/')}
+              className="flex items-center gap-2 text-gray-600 hover:text-black transition-colors mb-4"
+              aria-label="Go back to home"
+            >
+              <ArrowLeft size={24} />
+              <span>Retour à l'accueil</span>
+            </button>
             <nav className="flex" aria-label="Breadcrumb">
               <ol className="inline-flex items-center space-x-1 md:space-x-3">
                 <li className="inline-flex items-center">

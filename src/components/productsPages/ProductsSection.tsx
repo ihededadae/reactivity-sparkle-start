@@ -104,9 +104,9 @@ const ProductsSection = ({ isFromFooter = false }: ProductsSectionProps) => {
 
   return (
     <div className="w-full bg-gray-50">
-      <div className="container mx-auto px-4 py-8">
+      <div className={`container mx-auto px-4 ${isFromFooter ? 'py-12' : 'py-8'}`}>
         {isLoading ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
             {Array.from({ length: 6 }).map((_, index) => (
               <div key={index} className="w-full">
                 <Skeleton className="h-[400px] w-full rounded-lg" />
@@ -117,7 +117,7 @@ const ProductsSection = ({ isFromFooter = false }: ProductsSectionProps) => {
           <NoProductsFound />
         ) : (
           <>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
               {currentProducts.map((product) => (
                 <div key={product.id} className="w-full">
                   <ProductCard product={product} />
@@ -125,14 +125,14 @@ const ProductsSection = ({ isFromFooter = false }: ProductsSectionProps) => {
               ))}
             </div>
             {totalPages > 1 && (
-              <div className="flex justify-center items-center mt-6">
+              <div className="flex justify-center items-center mt-12">
                 {Array.from({ length: totalPages }).map((_, index) => (
                   <button
                     key={index}
-                    className={`mx-1 px-3 py-1 rounded-md ${
+                    className={`mx-2 px-4 py-2 rounded-md transition-all duration-300 ${
                       currentPage === index + 1
                         ? "bg-[#471818] text-white"
-                        : "bg-gray-200 text-gray-700"
+                        : "bg-gray-200 text-gray-700 hover:bg-gray-300"
                     }`}
                     onClick={() => setCurrentPage(index + 1)}
                   >
