@@ -15,45 +15,62 @@ const normalizeString = (str: string): string => {
     .replace(/-/g, " ");
 };
 
-const ProductsSection = () => {
+interface ProductsSectionProps {
+  isFromFooter?: boolean;
+}
+
+const ProductsSection = ({ isFromFooter = false }: ProductsSectionProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
   const location = useLocation();
 
   const pathSegments = location.pathname
     .split('/')
-    .filter(segment => segment !== '' && segment !== 'category');
+    .filter(segment => segment !== '' && segment !== 'category' && segment !== 'footer-category');
 
   console.log("Path segments for filtering:", pathSegments);
 
   const { data: products, isLoading, error } = useQuery({
-    queryKey: ['products', ...pathSegments],
+    queryKey: ['products', ...pathSegments, isFromFooter],
     queryFn: fetchAllProducts,
     select: (data) => {
+      if (pathSegments[0] === 'univers-cadeaux') {
+        // For univers-cadeaux, return random items from gift universe
+        return data
+          .filter((product: Product) => 
+            normalizeString(product.type_product) === 'univers-cadeaux'
+          )
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 6);
+      }
+
       return data.filter((product: Product) => {
-        if (pathSegments.length >= 3) {
-          const [type, category, itemgroup] = pathSegments;
+        if (pathSegments.length >= 2) {
+          const [type, category] = pathSegments;
           
-          // Normalize all strings for comparison
           const normalizedType = normalizeString(type);
           const normalizedCategory = normalizeString(category);
-          const normalizedItemgroup = normalizeString(itemgroup);
-
           const productType = normalizeString(product.type_product);
           const productCategory = normalizeString(product.category_product);
-          const productItemgroup = normalizeString(product.itemgroup_product);
 
-          console.log("Filtering product:", {
-            type: { normalized: normalizedType, product: productType, match: normalizedType === productType },
-            category: { normalized: normalizedCategory, product: productCategory, match: normalizedCategory === productCategory },
-            itemgroup: { normalized: normalizedItemgroup, product: productItemgroup, match: normalizedItemgroup === productItemgroup }
-          });
+          // If accessing from footer, only filter by type and category
+          if (isFromFooter) {
+            return normalizedType === productType && 
+                   (category ? normalizedCategory === productCategory : true);
+          }
 
-          return (
-            normalizedType === productType &&
-            normalizedCategory === productCategory &&
-            normalizedItemgroup === productItemgroup
-          );
+          // Regular filtering including itemgroup
+          const itemgroup = pathSegments[2];
+          if (itemgroup) {
+            const normalizedItemgroup = normalizeString(itemgroup);
+            const productItemgroup = normalizeString(product.itemgroup_product);
+            return normalizedType === productType && 
+                   normalizedCategory === productCategory && 
+                   normalizedItemgroup === productItemgroup;
+          }
+
+          return normalizedType === productType && 
+                 normalizedCategory === productCategory;
         }
         return true;
       });

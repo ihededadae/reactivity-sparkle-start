@@ -19,6 +19,7 @@ const PaymentFailurePage = React.lazy(() => import('./pages/PaymentFailurePage')
 const PromoCodesPage = React.lazy(() => import('./pages/PromoCodesPage'));
 const OrderPreviewPage = React.lazy(() => import('./pages/OrderPreviewPage'));
 const ProductDetailPage = React.lazy(() => import('./pages/ProductDetailPage'));
+const FooterCategoryPage = React.lazy(() => import('./pages/FooterCategoryPage'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -126,6 +127,14 @@ const App = () => (
                   element={
                     <Suspense fallback={<PageLoader />}>
                       <PaymentFailurePage />
+                    </Suspense>
+                  } 
+                />
+                <Route 
+                  path="/footer-category/*" 
+                  element={
+                    <Suspense fallback={<PageLoader />}>
+                      <FooterCategoryPage />
                     </Suspense>
                   } 
                 />

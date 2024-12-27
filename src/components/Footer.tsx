@@ -121,13 +121,12 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold text-sm mb-4">LES ARTISANS</h3>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:underline">Le monde Fiori</a></li>
-              <li><a href="#" className="hover:underline">L'univers Cadeaux</a></li>
-              <li><a href="#" className="hover:underline">Le prét à porter</a></li>
-              <li><a href="#" className="hover:underline">Accessoires</a></li>
-              <li><a href="#" className="hover:underline">Le sur mesure</a></li>
-              <li><a href="#" className="hover:underline">Outlet</a></li>
-
+              <li><a href="/footer-category/le-monde-fiori" className="hover:underline">Le monde Fiori</a></li>
+              <li><a href="/footer-category/univers-cadeaux" className="hover:underline">L'univers Cadeaux</a></li>
+              <li><a href="/footer-category/pret-a-porter" className="hover:underline">Le prét à porter</a></li>
+              <li><a href="/footer-category/accessoires" className="hover:underline">Accessoires</a></li>
+              <li><a href="/footer-category/sur-mesure" className="hover:underline">Le sur mesure</a></li>
+              <li><a href="/footer-category/outlet" className="hover:underline">Outlet</a></li>
             </ul>
             <div className="mt-8">
               <p className="text-sm mb-2">Nous acceptons</p>
